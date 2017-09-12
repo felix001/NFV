@@ -1,0 +1,121 @@
+// TODO: This should be within a NSD
+
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
+
+description: vSRX + Backend Server
+
+metadata:
+  template_name: vSRX15.1X49-D100
+
+topology_template:
+  inputs:
+    user_data:
+      type: string
+      description: user_data
+
+  node_templates:
+    VDU1:
+      type: tosca.nodes.nfv.VDU.Tacker
+      capabilities:
+        nfv_compute:
+          properties:
+            num_cpus: 2
+            mem_size: 8192 MB
+            disk_size: 16 GB
+      properties:
+        image: vSRX-15.1X49-D100
+        flavor: vsrx_flavor-8gb
+        mgmt_driver: noop
+        user_data_format: RAW
+        user_data: { get_input: user_data }
+
+    CP1:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        order: 0
+        management: true
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL1
+        - virtualBinding:
+            node: VDU1
+
+    CP2:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        order: 1
+        management: false
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL2
+        - virtualBinding:
+            node: VDU1
+
+    CP3:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        order: 2
+        management: false
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL3
+        - virtualBinding:
+            node: VDU1
+
+    VDU2:
+      type: tosca.nodes.nfv.VDU.Tacker
+      capabilities:
+        nfv_compute:
+          properties:
+            num_cpus: 1
+            mem_size: 512 MB
+            disk_size: 1 GB
+      properties:
+        image: cirros
+        mgmt_driver: noop
+
+    CP4:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        order: 1
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL1
+        - virtualBinding:
+            node: VDU2
+
+    CP5:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        order: 0
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL3
+        - virtualBinding:
+            node: VDU2
+
+    # mgmt net
+    VL1:
+     type: tosca.nodes.nfv.VL
+     properties:
+        network_name: mgmt_network
+        vendor: Tacker
+
+    # provider net
+    VL2:
+      type: tosca.nodes.nfv.VL
+      properties:
+        network_name: provider_network
+        vendor: Tacker
+
+    # tenant net
+    VL3:
+      type: tosca.nodes.nfv.VL
+      properties:
+        network_name: tenant_network_lab001-vsrx
+        vendor: Tacker
