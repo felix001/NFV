@@ -3,6 +3,9 @@ user_data: |
   ## Last changed: 2017-09-04 16:07:32 UTC
   version 15.1X49-D100.6;
   system {
+      root-authentication {
+        ssh-rsa "ssh-rsa <KEY>"; ## SECRET-DATA
+      }
       services {
           ssh;
           web-management {
