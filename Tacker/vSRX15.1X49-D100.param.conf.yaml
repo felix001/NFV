@@ -125,21 +125,21 @@ user_data: |
       ge-0/0/0 {
           unit 0 {
               family inet {
-                  address 172.29.50.106/24;
+                  address 172.29.50.110/24;
               }
           }
       }
       ge-0/0/1 {
           unit 0 {
               family inet {
-                  address 192.168.1.6/24;
+                  address 192.168.1.1/24;
               }
           }
       }
       fxp0 {
           unit 0 {
               family inet {
-                  address 172.29.100.107/24;
+                  address 172.29.100.110/24;
               }
           }
       }
