@@ -4,7 +4,7 @@ user_data: |
   version 15.1X49-D100.6;
   system {
       root-authentication {
-        ssh-rsa "ssh-rsa <KEY>"; ## SECRET-DATA
+          ssh-rsa "ssh-rsa <KEY>"; ## SECRET-DATA
       }
       services {
           ssh;
