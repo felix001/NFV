@@ -1,0 +1,11 @@
+// in the event of needing to remove stale vnf entries run....
+
+root@infra1:~/configs/lab001-vsrx# grep ^connection  /root/tacker/etc/tacker/tacker.conf
+connection = mysql://tacker:#####@172.29.238.91:3306/tacker?charset=utf8
+
+root@infra1:~/configs/lab001-vsrx# mysql -h 172.29.238.91 -u tacker -p  tacker
+
+mysql> delete from vnf_attribute;
+mysql> delete from vnf;
+
+tacker vnf-list
