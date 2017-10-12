@@ -1,2 +1,3 @@
 https://www.ciscolive.com
+https://superuser.openstack.org
 http://networkop.co.uk/
