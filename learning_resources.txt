@@ -1,6 +1,7 @@
-#VOD
+// VOD
 https://www.ciscolive.com
-#Blogs
+
+// Blogs
 https://superuser.openstack.org
 http://networkop.co.uk/
 https://sdntutorials.com/
