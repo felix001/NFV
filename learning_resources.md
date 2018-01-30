@@ -7,9 +7,9 @@ https://nuagenetworks.zendesk.com/hc/en-us
 
 
 # Blogs
-https://superuser.openstack.org
-http://networkop.co.uk/
-https://sdntutorials.com/
+* https://superuser.openstack.org
+* http://networkop.co.uk/
+* https://sdntutorials.com/
 
 # General
 https://www.ciscolive.com
