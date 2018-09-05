@@ -1,2 +1,2 @@
-# NFV
-Templates, models and configurations used to deploy NFV.
+# NFV/SDN
+Templates, models and configurations used to deploy NFV/SDN.
